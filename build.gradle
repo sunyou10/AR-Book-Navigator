@@ -1,0 +1,13 @@
+buildscript {
+    repositories {
+        google()
+    }
+
+    dependencies {
+        classpath 'com.google.ar.sceneform:plugin:1.15.0'
+    }
+}
+plugins {
+alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+}
