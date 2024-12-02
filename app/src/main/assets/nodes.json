@@ -3,9 +3,9 @@
     {
       "id": 1,
       "type": "Entry",
-      "position": [0, 0, 0],
+      "position": [0, 0, -1],
       "neighbors": [2],
-      "forwardVector": [0, 0, 1, 0]
+      "forwardVector": [0, 1, 0, 1]
     },
     {
       "id": 2,
@@ -25,7 +25,8 @@
       "id": 4,
       "type": "Dest",
       "position": [1, 0, 0],
-      "neighbors": [3]
+      "neighbors": [3],
+      "forwardVector": [0, 0, 1, 0]
     }
   ]
 }
