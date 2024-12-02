@@ -7,26 +7,27 @@ sealed class TreeNode(
     val id: Int,
     val type: String,
     val position: Float3,
-    val neighbors: MutableList<Int> = mutableListOf()
+    val neighbors: MutableList<Int> = mutableListOf(),
+    val forwardVector: Quaternion
 ){
     class Entry(
-        var forwardVector: Quaternion,
         id: Int,
         position: Float3,
         neighbors: MutableList<Int> = mutableListOf(),
-    ): TreeNode(id, "Entry", position, neighbors)
+        forwardVector: Quaternion
+    ): TreeNode(id, "Entry", position, neighbors, forwardVector)
 
     class Path(
-        var forwardVector: Quaternion,
         id: Int,
         position: Float3,
-        neighbors: MutableList<Int> = mutableListOf()
-    ): TreeNode(id, "Path", position, neighbors)
+        neighbors: MutableList<Int> = mutableListOf(),
+        forwardVector: Quaternion
+    ): TreeNode(id, "Path", position, neighbors, forwardVector)
 
     class Dest(
-        var forwardVector: Quaternion?,
         id: Int,
         position: Float3,
-        neighbors: MutableList<Int> = mutableListOf()
-    ): TreeNode(id, "Dest", position, neighbors)
+        neighbors: MutableList<Int> = mutableListOf(),
+        forwardVector: Quaternion
+    ): TreeNode(id, "Dest", position, neighbors, forwardVector)
 }

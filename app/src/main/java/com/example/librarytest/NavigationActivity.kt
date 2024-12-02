@@ -95,9 +95,13 @@ class NavigationActivity : AppCompatActivity() {
         // 위치 정보 추출
         val position = node.position
 
+        // 회전 정보 추출
+        val forwardVector = node.forwardVector
+
         // Anchor 생성
         val anchor = arFragment.arSceneView.session?.createAnchor(
-            Pose(floatArrayOf(position.x, position.y, position.z), floatArrayOf(0f, 0f, 0f, 1f))
+            Pose(floatArrayOf(position.x, position.y, position.z),
+                floatArrayOf(forwardVector.x, forwardVector.y, forwardVector.z, forwardVector.w))
         )
         val anchorNode = AnchorNode(anchor).apply { setParent(arFragment.arSceneView.scene) }
 
