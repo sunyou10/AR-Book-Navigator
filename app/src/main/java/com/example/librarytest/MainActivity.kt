@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<ExtendedFloatingActionButton>(R.id.startButton).setOnClickListener {
             val intent = Intent(this, NavigationActivity::class.java).apply {
-                putExtra("bookNumber", "BookA")
+                putExtra("bookNumber", "아랍인의 역사")
             }
             startActivity(intent)
         }
