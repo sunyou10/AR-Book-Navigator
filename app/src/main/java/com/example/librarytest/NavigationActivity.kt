@@ -20,6 +20,7 @@ class NavigationActivity : AppCompatActivity() {
     private lateinit var bookNumber: String
     private lateinit var navigationButton: ExtendedFloatingActionButton
     private var arrowSource: Uri = Uri.parse("direction_arrow.sfb")
+    private var pointSource: Uri = Uri.parse("map_point.sfb")
     private var nodes: List<TreeNode> = emptyList()
     private var currentNodeId: Int = 1
 
@@ -59,6 +60,7 @@ class NavigationActivity : AppCompatActivity() {
         }
 
         if (nextNodeId == null) {
+            drawArrowForNode(currentNode)
             // 도착
             navigationButton.text = "도착!"
             Toast.makeText(this, "도착했습니다!", Toast.LENGTH_SHORT).show()
@@ -106,7 +108,7 @@ class NavigationActivity : AppCompatActivity() {
         val anchorNode = AnchorNode(anchor).apply { setParent(arFragment.arSceneView.scene) }
 
         ModelRenderable.builder()
-            .setSource(this, arrowSource)
+            .setSource(this, selectSource(node))
             .build()
             .thenAccept { renderable ->
                 renderable.isShadowCaster = false
@@ -120,6 +122,13 @@ class NavigationActivity : AppCompatActivity() {
                 Toast.makeText(this, "Unable to load arrow model: ${throwable.message}", Toast.LENGTH_LONG).show()
                 null
             }
+    }
+
+    private fun selectSource(node: TreeNode): Uri {
+        if (node is TreeNode.Dest)
+            return pointSource
+        else
+            return arrowSource
     }
 
     private fun findNodeById(nodeId: Int): TreeNode? {
