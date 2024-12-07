@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private val arCoreSessionHelper = ARCoreSessionLifecycleHelper(this)
     private lateinit var arFragment: ArFragment
+    private val book: String = "스타벅스 웨이"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<ExtendedFloatingActionButton>(R.id.startButton).setOnClickListener {
             val intent = Intent(this, NavigationActivity::class.java).apply {
-                putExtra("bookNumber", "아랍인의 역사")
+                putExtra("bookNumber", book)
             }
             startActivity(intent)
         }
